@@ -1,0 +1,268 @@
+{
+  "story": {
+    "id": 1,
+    "title": "Chiến dịch Hồ Chí Minh — Truyện tương tác học Triết học",
+    "description": "Trải nghiệm tương tác giả tưởng dựa trên bối cảnh Chiến dịch Hồ Chí Minh 1975, mỗi lựa chọn liên kết với một khái niệm triết học để học sinh vừa chơi vừa hiểu lý luận.",
+    "language": "vi"
+  },
+  "chapter": {
+    "id": 1,
+    "story_id": 1,
+    "title": "Hành trình giải phóng",
+    "order_index": 1
+  },
+  "scenes": [
+    {
+      "id": 1,
+      "chapter_id": 1,
+      "title": "Họp Bộ Chỉ huy",
+      "content": "Phòng họp tối, bàn bản đồ rộng. Bộ chỉ huy phân tích tình hình sau Hiệp định. Quyết định có thể mở chiến dịch ở một vùng trọng điểm hay tiếp tục củng cố lực lượng.",
+      "image": "/assets/images/scene_01.jpg",
+      "philosophy_note": "Phép biện chứng duy vật: đánh giá hoàn cảnh khách quan trước khi hành động.",
+      "choices": [
+        {
+          "id": 101,
+          "text": "Phương án A: Tấn công mở rộng ngay — tận dụng thời cơ",
+          "next_scene_id": 2,
+          "philosophy_explain": "Thể hiện ‘nhạy bén với quy luật lịch sử’ — biện chứng lịch sử: nắm thời cơ để thay đổi vận mệnh.",
+          "score_delta": 2,
+          "consequence_text": "Bộ chỉ huy quyết định hành động táo bạo, huy động mũi tiến công."
+        },
+        {
+          "id": 102,
+          "text": "Phương án B: Hoãn lại, củng cố thêm lực lượng",
+          "next_scene_id": 3,
+          "philosophy_explain": "Tôn trọng luận điểm: phải chuẩn bị về lực lượng và vật chất — phép biện chứng duy vật cho cân nhắc thực tiễn.",
+          "score_delta": 0,
+          "consequence_text": "Quân đội dùng thêm thời gian để chuẩn bị trang bị và kế hoạch."
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "chapter_id": 1,
+      "title": "Bản đồ chiến lược",
+      "content": "Các sỹ quan trải bản đồ chiến trường và vạch mũi tiến công. Mũi tấn công thật sự quyết đoán, nhưng rủi ro cao nếu thông tin không chính xác.",
+      "image": "/assets/images/scene_02.jpg",
+      "philosophy_note": "Phân tích mối liên hệ vật chất: đánh giá tương quan lực lượng.",
+      "choices": [
+        {
+          "id": 201,
+          "text": "Chọn đường tiến công A (đánh thẳng vào trọng điểm)",
+          "next_scene_id": 4,
+          "philosophy_explain": "Ứng dụng phân tích biện chứng: lựa chọn căn cứ vào năng lực tác động thực tế.",
+          "score_delta": 2,
+          "consequence_text": "Quân tiến công theo tuyến chính, áp lực lên địch tăng."
+        },
+        {
+          "id": 202,
+          "text": "Chọn đường tiến công B (dùng đánh lừa, vòng sang yếu điểm)",
+          "next_scene_id": 5,
+          "philosophy_explain": "Chiến lược vận dụng mâu thuẫn biện chứng: chuyển đổi lực lượng bằng sự sáng tạo chiến thuật.",
+          "score_delta": 1,
+          "consequence_text": "Quân chuyển hướng gây bất ngờ, nhưng mất thời gian."
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "chapter_id": 1,
+      "title": "Củng cố lực lượng",
+      "content": "Đội quân củng cố hậu cần và huấn luyện. Một số chỉ huy lo ngại lỡ thời cơ lịch sử, một số muốn đảm bảo chắc thắng trước.",
+      "image": "/assets/images/scene_03.jpg",
+      "philosophy_note": "Nguyên tắc thực tiễn: sức mạnh thực tế là cơ sở của thắng lợi.",
+      "choices": [
+        {
+          "id": 301,
+          "text": "Tiếp tục cố gắng chuẩn bị cho đến khi chắc chắn",
+          "next_scene_id": 5,
+          "philosophy_explain": "Ưu tiên biện chứng giữa lý luận và thực tiễn: chuẩn bị tốt, giảm rủi ro.",
+          "score_delta": 0,
+          "consequence_text": "Chuẩn bị thêm phương tiện và thông tin tình báo."
+        },
+        {
+          "id": 302,
+          "text": "Tiến hành một cuộc đột phá cục bộ để thử nghiệm chiến thuật",
+          "next_scene_id": 4,
+          "philosophy_explain": "Thực nghiệm lý luận: kiểm chứng chiến thuật trong thực tế.",
+          "score_delta": 1,
+          "consequence_text": "Thử nghiệm gây áp lực, thu về thông tin quý giá."
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "chapter_id": 1,
+      "title": "Tây Nguyên bùng nổ",
+      "content": "Quân ta tiến vào vùng chiến lược, thắng lợi mở ra cửa ngõ phía Bắc Sài Gòn. Tin thắng trận tạo đà cho các vùng khác.",
+      "image": "/assets/images/scene_04.jpg",
+      "philosophy_note": "Ảnh hưởng qua lại giữa bộ phận và tổng thể — triết học lịch sử thể hiện bằng hiệu ứng lan truyền.",
+      "choices": [
+        {
+          "id": 401,
+          "text": "Tận dụng chiến thắng, mở chiến dịch lớn",
+          "next_scene_id": 7,
+          "philosophy_explain": "Tư duy chiến lược theo phép biện chứng: lấy nhỏ thắng lớn, tạo lực đẩy tổng thể.",
+          "score_delta": 2,
+          "consequence_text": "Chiến dịch mở rộng, nhiều nơi nổi dậy ủng hộ."
+        },
+        {
+          "id": 402,
+          "text": "Tập trung giữ vùng vừa chiếm để củng cố",
+          "next_scene_id": 5,
+          "philosophy_explain": "Tư duy lâu dài: duy trì thành quả là yếu tố của sự phát triển bền vững.",
+          "score_delta": 0,
+          "consequence_text": "Nguồn lực được phân tán để trấn giữ vùng mới."
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "chapter_id": 1,
+      "title": "Hiệu ứng domino",
+      "content": "Các thành phố nhỏ thất thủ, quân địch rối loạn. Tinh thần quần chúng và binh lính bị ảnh hưởng lớn—cả chính trị lẫn quân sự.",
+      "image": "/assets/images/scene_05.jpg",
+      "philosophy_note": "Lý luận về lực lượng quần chúng: sức mạnh nhân dân là động lực lịch sử.",
+      "choices": [
+        {
+          "id": 501,
+          "text": "Kêu gọi quần chúng ủng hộ tại các vùng vừa giải phóng",
+          "next_scene_id": 6,
+          "philosophy_explain": "Thực tiễn tuyến cơ sở: huy động quần chúng làm tăng sức mạnh chính trị và hậu cần.",
+          "score_delta": 1,
+          "consequence_text": "Dân chúng đồng lòng, cung cấp hậu cần và tin tức."
+        },
+        {
+          "id": 502,
+          "text": "Đẩy mạnh tấn công vào tuyến địch yếu",
+          "next_scene_id": 7,
+          "philosophy_explain": "Tận dụng mâu thuẫn để làm suy yếu đối phương, theo logic biện chứng.",
+          "score_delta": 2,
+          "consequence_text": "Áp lực gia tăng, địch bắt đầu rút lui."
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "chapter_id": 1,
+      "title": "Tiếp nhận và củng cố Huế",
+      "content": "Quân vào thành phố lịch sử, dân chào đón. Cần quyết định xử lý hành chính và đảm bảo trật tự.",
+      "image": "/assets/images/scene_06.jpg",
+      "philosophy_note": "Quan điểm lịch sử-cụ thể: chính sách dân sinh phải gắn với điều kiện địa phương.",
+      "choices": [
+        {
+          "id": 601,
+          "text": "Thiết lập trật tự nhanh, giao quyền cho chính quyền lâm thời",
+          "next_scene_id": 7,
+          "philosophy_explain": "Thực hiện quan điểm phát triển: lồng ghép chính sách phù hợp để củng cố thành quả.",
+          "score_delta": 1,
+          "consequence_text": "Trật tự nhanh chóng được khôi phục, hậu cần ổn định."
+        },
+        {
+          "id": 602,
+          "text": "Giữ quân tại vị trí chiến đấu, ưu tiên an ninh",
+          "next_scene_id": 7,
+          "philosophy_explain": "Ưu tiên an ninh là tôn trọng điều kiện tồn tại trong phân tích thực tiễn.",
+          "score_delta": 0,
+          "consequence_text": "Đảm bảo an ninh nhưng chậm triển khai chính sách dân sinh."
+        }
+      ]
+    },
+    {
+      "id": 7,
+      "chapter_id": 1,
+      "title": "Tập kết về Sài Gòn",
+      "content": "Lực lượng chính hội tụ tiến về trung tâm — chuẩn bị tổng tiến công vào thủ phủ lớn nhất.",
+      "image": "/assets/images/scene_07.jpg",
+      "philosophy_note": "Tư duy tổng hợp: phối hợp lực lượng, thời cơ và chiến lược để đạt mục tiêu lớn.",
+      "choices": [
+        {
+          "id": 701,
+          "text": "Tiến công đồng loạt toàn tuyến (tối đa hóa áp lực)",
+          "next_scene_id": 8,
+          "philosophy_explain": "Nguyên tắc tổng công kích: kết hợp các yếu tố để tạo bước ngoặt lịch sử.",
+          "score_delta": 2,
+          "consequence_text": "Các cánh quân đồng loạt tiến công vào thành phố."
+        },
+        {
+          "id": 702,
+          "text": "Chia lực lượng tấn công từng mảng, tránh mạo hiểm quá lớn",
+          "next_scene_id": 8,
+          "philosophy_explain": "Áp dụng nguyên tắc thận trọng: cân bằng giữa rủi ro và hiệu quả.",
+          "score_delta": 1,
+          "consequence_text": "Tiến công theo giai đoạn, có kế hoạch dự phòng."
+        }
+      ]
+    },
+    {
+      "id": 8,
+      "chapter_id": 1,
+      "title": "Tiến vào đô thị",
+      "content": "Xe tăng và bộ binh tiến sâu vào đường phố, giao tranh diễn ra ở một số điểm then chốt.",
+      "image": "/assets/images/scene_08.jpg",
+      "philosophy_note": "Mối quan hệ giữa lực lượng và chính trị: giải phóng cần kết hợp quân sự và chính trị.",
+      "choices": [
+        {
+          "id": 801,
+          "text": "Tập trung vào mục tiêu chính trị (chiếm trung tâm hành chính)",
+          "next_scene_id": 9,
+          "philosophy_explain": "Chiến lược chính trị-milit: nhắm vào trung tâm khiến đối phương mất tinh thần.",
+          "score_delta": 2,
+          "consequence_text": "Đội tiên phong xông vào các công sở quan trọng."
+        },
+        {
+          "id": 802,
+          "text": "Dọn dẹp từng quận, ưu tiên an toàn dân sự",
+          "next_scene_id": 9,
+          "philosophy_explain": "Quan điểm đạo đức cách mạng: bảo vệ dân là mục tiêu chính.",
+          "score_delta": 1,
+          "consequence_text": "Hành quân thận trọng, giảm thương vong dân sự."
+        }
+      ]
+    },
+    {
+      "id": 9,
+      "chapter_id": 1,
+      "title": "Dinh Độc Lập trước giờ G",
+      "content": "Lực lượng áp sát cổng lớn. Một quyết định tối quan trọng: dùng lực lượng cơ giới đột phá hay thương lượng buộc đầu hàng?",
+      "image": "/assets/images/scene_09.jpg",
+      "philosophy_note": "Đạo đức cách mạng và mục tiêu chiến lược: cân nhắc giữa sức mạnh và tính nhân văn.",
+      "choices": [
+        {
+          "id": 901,
+          "text": "Dùng lực lượng cơ giới đột phá cổng để kết thúc nhanh",
+          "next_scene_id": 10,
+          "philosophy_explain": "Thể hiện quyết đoán: khi thời cơ chín muồi, hành động quyết liệt đem lại kết quả ngay.",
+          "score_delta": 3,
+          "consequence_text": "Đội tiên phong đột phá, cổng bị xuyên phá."
+        },
+        {
+          "id": 902,
+          "text": "Cố gắng thúc đẩy đầu hàng để tránh tàn phá",
+          "next_scene_id": 10,
+          "philosophy_explain": "Ưu tiên giảm bạo lực: vận dụng lý luận nhân văn trong chiến tranh.",
+          "score_delta": 1,
+          "consequence_text": "Đàm phán khiến nhiều đơn vị địch buông súng."
+        }
+      ]
+    },
+    {
+      "id": 10,
+      "chapter_id": 1,
+      "title": "Cờ tung bay — Hậu quả và suy ngẫm",
+      "content": "Lá cờ chiến thắng phấp phới. Người chơi nhận được tổng kết: điểm, phản ánh mối quan hệ giữa lựa chọn chiến lược và bài học triết học.",
+      "image": "/assets/images/scene_10.jpg",
+      "philosophy_note": "Kết luận triết học: lịch sử là kết quả của lựa chọn, điều kiện khách quan và hoạt động chủ quan có mối quan hệ biện chứng.",
+      "choices": [
+        {
+          "id": 1001,
+          "text": "Kết thúc: Xem báo cáo học tập (tóm tắt tư tưởng triết học bạn đã học)",
+          "next_scene_id": null,
+          "philosophy_explain": "Tổng kết các khái niệm triết học đã áp dụng trong trò chơi.",
+          "score_delta": 0,
+          "consequence_text": "Hiển thị báo cáo học tập, gợi ý bài đọc thêm."
+        }
+      ]
+    }
+  ]
+}
