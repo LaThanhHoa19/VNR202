@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { startGame, hasProgress, resumeGame } from '../api';
+import AudioController from '../services/AudioController';
 import IntroVideo from '../components/IntroVideo';
 import HistoricalTimeline from '../components/HistoricalTimeline';
 
@@ -11,9 +12,14 @@ export default function HomePage() {
   const [error, setError] = useState('');
   const [showIntro, setShowIntro] = useState(false);
   const [showTimeline, setShowTimeline] = useState(false);
-  const [isMuted, setIsMuted] = useState(true);
+  const [isMuted, setIsMuted] = useState(AudioController.isMuted);
   const [pendingScene, setPendingScene] = useState(null);
   const navigate = useNavigate();
+
+  // Start BGM on mount (will only play if browser allows or user interacts)
+  React.useEffect(() => {
+    AudioController.playSceneBgm(0); // Use 0 or a specific ID for home
+  }, []);
 
   const handleStart = async () => {
     if (!playerName.trim()) {
@@ -211,6 +217,7 @@ export default function HomePage() {
             loop 
             muted={isMuted}
             playsInline
+            poster="/assets/images/background.jpg"
             className="w-full h-full object-cover scale-105"
             style={{ filter: 'blur(8px) brightness(0.5)' }}
         >
@@ -225,7 +232,11 @@ export default function HomePage() {
       {/* Mute toggle for background video */}
       <div className="fixed bottom-6 right-6 z-20">
           <button
-              onClick={() => setIsMuted(!isMuted)}
+              onClick={() => {
+                const newMute = !isMuted;
+                AudioController.setMute(newMute);
+                setIsMuted(newMute);
+              }}
               className="w-10 h-10 rounded-full bg-white/5 hover:bg-white/10 border border-white/10 text-white/50 hover:text-white flex items-center justify-center transition-all backdrop-blur-md"
               title={isMuted ? "Bật âm thanh" : "Tắt âm thanh"}
           >
