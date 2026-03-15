@@ -1,4 +1,4 @@
-import { Howl } from 'howler';
+import { Howl, Howler } from 'howler';
 
 class AudioController {
     constructor() {
@@ -15,27 +15,38 @@ class AudioController {
     }
 
     playSceneBgm(sceneId) {
-        if (this.currentSceneId === sceneId) return;
-
-        // Map sceneId to mood/category or specific file
         let bgmFile = this.getBgmFileForScene(sceneId);
-        
+        const newSrc = `/assets/audio/${bgmFile}`;
+
+        // Don't restart if already playing the same file
+        if (this.bgm && this.bgm._src === newSrc && this.bgm.playing()) {
+            return;
+        }
+
+        // If a different BGM is playing, fade it out
         if (this.bgm) {
-            this.bgm.fade(this.volume, 0, 1000);
+            this.bgm.fade(this.bgm.volume(), 0, 1500);
             const oldBgm = this.bgm;
-            setTimeout(() => oldBgm.stop(), 1000);
+            setTimeout(() => {
+                oldBgm.stop();
+                oldBgm.unload();
+            }, 1600);
         }
 
         this.bgm = new Howl({
-            src: [`/assets/audio/${bgmFile}`],
+            src: [newSrc],
             loop: true,
             volume: 0,
-            html5: true // Better for long files
+            html5: true, // Crucial for performance and long files
+            onloaderror: (e) => console.error('Audio load error:', e)
         });
 
-        this.bgm.play();
-        this.bgm.fade(0, this.volume, 1000);
-        this.currentSceneId = sceneId;
+        if (!this.isMuted) {
+            this.bgm.play();
+            this.bgm.fade(0, this.volume, 1000);
+        } else {
+            this.bgm.volume(0);
+        }
     }
 
     getBgmFileForScene(sceneId) {
@@ -51,15 +62,23 @@ class AudioController {
 
     setMute(mute) {
         this.isMuted = mute;
-        const vol = mute ? 0 : this.volume;
+        Howler.mute(mute);
+        
+        // Ensure BGM volume is also 0 for consistency
         if (this.bgm) {
-            this.bgm.fade(this.bgm.volume(), vol, 500);
+            if (mute) {
+                this.bgm.volume(0);
+                this.bgm.pause(); // Be aggressive
+            } else {
+                this.bgm.volume(this.volume);
+                this.bgm.play();
+            }
         }
     }
 
     setVolume(vol) {
         this.volume = vol;
-        if (this.bgm) {
+        if (this.bgm && !this.isMuted) {
             this.bgm.volume(vol);
         }
     }

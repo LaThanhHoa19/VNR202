@@ -24,6 +24,7 @@ export default function ScenePage() {
   const [selectedChoiceId, setSelectedChoiceId] = useState(null);
   const [isMuted, setIsMuted] = useState(AudioController.isMuted);
   
+  const [history, setHistory] = useState(location.state?.history || []);
   const [feedback, setFeedback] = useState(null); // { consequence, philosophy, nextScene }
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [error, setError] = useState('');
@@ -37,7 +38,7 @@ export default function ScenePage() {
           setScene(res.data);
           AudioController.playSceneBgm(res.data.sceneId);
         })
-        .catch(() => setError('Không tải được cảnh này. Hãy kiểm tra kết nối server.'))
+        .catch(() => setError('Lỗi khi tải dữ liệu. Vui lòng thử lại.'))
         .finally(() => setLoading(false));
     } else {
       AudioController.playSceneBgm(scene.sceneId);
@@ -55,6 +56,14 @@ export default function ScenePage() {
       const res = await processChoice(playerName, choice.id);
       const nextSceneResponse = res.data;
       
+      // Update history
+      setHistory(prev => [...prev, {
+        sceneId: scene.sceneId,
+        sceneTitle: scene.title,
+        choiceText: choice.text,
+        philosophy: choice.philosophyExplain
+      }]);
+
       // The API now returns consequenceText and feedbackPhilosophy in SceneResponse
       setFeedback({
         consequence: nextSceneResponse.consequenceText || 'Hành động đã được thực hiện.',
@@ -81,7 +90,7 @@ export default function ScenePage() {
 
     if (nextScene.isEnding || !nextScene.choices || nextScene.choices.length === 0) {
       navigate('/result', {
-        state: { scene: nextScene, score: newScore, playerName }
+        state: { scene: nextScene, score: newScore, playerName, history }
       });
     } else {
       setSelectedChoiceId(null);

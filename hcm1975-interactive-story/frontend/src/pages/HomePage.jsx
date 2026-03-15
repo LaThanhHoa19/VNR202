@@ -210,25 +210,25 @@ export default function HomePage() {
       </div>
 
       {/* Global Background Video - Optimized for Mobile */}
-      <div className="fixed inset-0 z-0 overflow-hidden pointer-events-none">
+      <div className="fixed inset-0 z-0 overflow-hidden pointer-events-none bg-black">
         <video 
             key="bg-video"
             autoPlay 
             loop 
             muted 
             playsInline
+            preload="auto"
             poster="/assets/images/background.jpg"
             src="/assets/images/video/hanoi_vivu.mp4"
-            className="w-full h-full object-cover scale-105"
-            style={{ filter: 'blur(8px) brightness(0.5)' }}
-            onCanPlayThrough={(e) => e.target.play()}
+            className="w-full h-full object-cover scale-105 opacity-60"
+            style={{ filter: 'blur(5px) brightness(0.7)' }}
         >
             Trình duyệt của bạn không hỗ trợ video nền.
         </video>
         {/* Cinematic overlays for depth and legibility */}
-        <div className="absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-black/60 to-transparent" />
-        <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-black/80 to-transparent" />
-        <div className="absolute inset-0 bg-black/20" />
+        <div className="absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-black/80 to-transparent" />
+        <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-black/90 to-transparent" />
+        <div className="absolute inset-0 bg-black/40" />
       </div>
 
       {/* Mute toggle for background video */}

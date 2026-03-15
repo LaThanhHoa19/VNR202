@@ -4,13 +4,13 @@ export default function FeedbackModal({ isOpen, consequence, philosophy, onConti
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-dark-900/90 backdrop-blur-sm animate-fade-in">
-      <div className="glass-card max-w-lg w-full p-8 border-primary-500/30 shadow-2xl shadow-primary-900/20 animate-slide-up">
-        <div className="flex items-center gap-3 mb-6">
-          <div className="w-10 h-10 rounded-full bg-primary-600 flex items-center justify-center text-xl">
+    <div className="fixed inset-0 z-[200] flex items-center justify-center p-4 bg-dark-950/95 backdrop-blur-md animate-fade-in">
+      <div className="glass-card max-w-lg w-full p-6 sm:p-8 border-primary-500/30 shadow-2xl animate-slide-up">
+        <div className="flex items-center gap-3 mb-4 sm:mb-6">
+          <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-primary-600 flex items-center justify-center text-lg sm:text-xl">
             ✓
           </div>
-          <h3 className="text-xl font-bold text-white font-display">Kết quả hành động</h3>
+          <h3 className="text-lg sm:text-xl font-bold text-white font-display">Kết quả hành động</h3>
         </div>
 
         <div className="space-y-6">

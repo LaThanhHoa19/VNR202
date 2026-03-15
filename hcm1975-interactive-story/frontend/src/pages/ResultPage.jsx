@@ -132,21 +132,54 @@ export default function ResultPage() {
           </motion.div>
         )}
 
-        {/* Philosophy Summary */}
-        <motion.div 
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            className="philosophy-box mb-12 p-8"
-        >
-          <div className="flex items-center gap-3 mb-4">
-            <span className="text-primary-500">🎓</span>
-            <span className="text-white font-history font-bold text-xl tracking-wide">Bài học lịch sử & Triết học</span>
-          </div>
-          <p className="text-gray-300 text-lg leading-relaxed font-light italic">
-            Chiến dịch Hồ Chí Minh 1975 là minh chứng sống động cho quy luật mâu thuẫn và phủ định biện chứng. 
-            Thắng lợi này khẳng định thực tiễn là tiêu chuẩn của chân lý, và sự nhạy bén với thời cơ lịch sử chính là sự vận dụng hoàn hảo của tư duy biện chứng duy vật.
-          </p>
-        </motion.div>
+        {/* Philosophy Summary & Choice History */}
+        <div className="space-y-6 mb-12">
+            <motion.div 
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                className="philosophy-box p-6 md:p-8"
+            >
+                <div className="flex items-center gap-3 mb-4">
+                    <span className="text-primary-500 text-2xl">🎓</span>
+                    <span className="text-white font-history font-bold text-xl tracking-wide">Bài học Tổng quát</span>
+                </div>
+                <p className="text-gray-300 text-base md:text-lg leading-relaxed font-light italic">
+                    Chiến dịch Hồ Chí Minh 1975 là minh chứng sống động cho quy luật mâu thuẫn và phủ định biện chứng. 
+                    Thắng lợi này khẳng định thực tiễn là tiêu chuẩn của chân lý, và sự nhạy bén với thời cơ lịch sử chính là sự vận dụng hoàn hảo của tư duy biện chứng duy vật.
+                </p>
+            </motion.div>
+
+            {history && history.length > 0 && (
+                <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.3 }}
+                    className="space-y-4"
+                >
+                    <h3 className="text-gray-500 text-[10px] font-black uppercase tracking-[0.4em] mb-4 text-center">
+                        — Hành trình quyết định của bạn —
+                    </h3>
+                    <div className="space-y-3">
+                        {history.map((item, index) => (
+                            <div key={index} className="glass-card p-4 border-white/5 bg-white/[0.02] hover:bg-white/[0.05] transition-colors">
+                                <div className="flex items-start gap-4">
+                                    <div className="w-8 h-8 rounded-full bg-primary-600/20 text-primary-400 flex items-center justify-center text-xs font-bold shrink-0 mt-1">
+                                        {index + 1}
+                                    </div>
+                                    <div className="flex-1">
+                                        <div className="text-[10px] font-black uppercase tracking-wider text-gray-500 mb-1">{item.sceneTitle}</div>
+                                        <div className="text-white font-medium mb-2 text-sm md:text-base">“{item.choiceText}”</div>
+                                        <div className="text-primary-400/80 text-xs italic border-l border-primary-500/30 pl-3 py-1">
+                                            {item.philosophy}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+                </motion.div>
+            )}
+        </div>
 
         {/* Actions */}
         <div className="flex flex-col sm:flex-row gap-4">
