@@ -72,13 +72,13 @@ const IntroVideo = ({ onComplete }) => {
                 {isPlaying && currentSub && (
                     <motion.div 
                         key={currentSub}
-                        initial={{ opacity: 0, y: 20 }}
+                        initial={{ opacity: 0, y: 10 }}
                         animate={{ opacity: 1, y: 0 }}
-                        exit={{ opacity: 0, y: -20 }}
-                        className="absolute bottom-24 left-1/2 -translate-x-1/2 z-30 w-full max-w-4xl px-8 text-center"
+                        exit={{ opacity: 0, y: -10 }}
+                        className="absolute bottom-12 md:bottom-24 left-0 right-0 z-30 flex justify-center px-4"
                     >
-                        <div className="bg-black/60 backdrop-blur-xl px-10 py-6 rounded-3xl border border-white/10 shadow-2xl">
-                            <p className="text-white text-2xl md:text-3xl font-medium leading-relaxed drop-shadow-lg">
+                        <div className="bg-black/70 backdrop-blur-xl px-6 py-3 md:px-10 md:py-6 rounded-2xl md:rounded-3xl border border-white/10 shadow-2xl max-w-full sm:max-w-4xl">
+                            <p className="text-white text-base sm:text-xl md:text-3xl font-medium leading-relaxed drop-shadow-lg text-center">
                                 {currentSub}
                             </p>
                         </div>

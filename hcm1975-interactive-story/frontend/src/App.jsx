@@ -6,29 +6,26 @@ import ResultPage from './pages/ResultPage';
 import AdminDashboard from './pages/AdminDashboard';
 import './index.css';
 
-const PageWrapper = ({ children }) => (
-  <motion.div
-    initial={{ opacity: 0 }}
-    animate={{ opacity: 1 }}
-    exit={{ opacity: 0 }}
-    transition={{ duration: 0.8, ease: "easeInOut" }}
-    className="w-full min-h-screen"
-  >
-    {children}
-  </motion.div>
-);
-
 function AnimatedRoutes() {
   const location = useLocation();
   return (
     <AnimatePresence mode="wait">
-      <Routes location={location} key={location.pathname}>
-        <Route path="/" element={<PageWrapper><HomePage /></PageWrapper>} />
-        <Route path="/scene/:id" element={<PageWrapper><ScenePage /></PageWrapper>} />
-        <Route path="/result" element={<PageWrapper><ResultPage /></PageWrapper>} />
-        <Route path="/admin" element={<PageWrapper><AdminDashboard /></PageWrapper>} />
-        <Route path="/admin/*" element={<PageWrapper><AdminDashboard /></PageWrapper>} />
-      </Routes>
+      <motion.div
+        key={location.key}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+        transition={{ duration: 0.8, ease: "easeInOut" }}
+        className="w-full min-h-screen"
+      >
+        <Routes location={location}>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/scene/:id" element={<ScenePage />} />
+          <Route path="/result" element={<ResultPage />} />
+          <Route path="/admin" element={<AdminDashboard />} />
+          <Route path="/admin/*" element={<AdminDashboard />} />
+        </Routes>
+      </motion.div>
     </AnimatePresence>
   );
 }

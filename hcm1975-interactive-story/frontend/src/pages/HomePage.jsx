@@ -31,7 +31,7 @@ export default function HomePage() {
     try {
       const existsRes = await hasProgress(playerName.trim());
       let sceneRes;
-      if (existsRes.data) {
+      if (existsRes.data?.exists) {
         const resume = window.confirm(
           `Chào mừng trở lại, ${playerName}! Bạn muốn tiếp tục trò chơi cũ hay bắt đầu lại?`
           + '\n\nOK = Tiếp tục | Cancel = Bắt đầu lại'
@@ -46,12 +46,12 @@ export default function HomePage() {
       }
       
       localStorage.setItem('playerName', playerName.trim());
-      localStorage.setItem('score', '0');
+      localStorage.setItem('score', String(sceneRes.data?.updatedScore ?? 0));
       
       setPendingScene(sceneRes.data);
       setShowIntro(true); // Start intro
     } catch (err) {
-      setError('Không thể kết nối server. Hãy chắc chắn backend đang chạy tại port 8080.');
+      setError('Đã có lỗi xảy ra. Vui lòng thử lại.');
     } finally {
       setLoading(false);
     }
@@ -70,7 +70,7 @@ export default function HomePage() {
   }
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center p-6 relative overflow-hidden">
+    <div className="min-h-screen flex flex-col items-center justify-center px-4 py-8 relative overflow-hidden">
       {/* Cinematic Background: Floating Embers */}
       <div className="fixed inset-0 overflow-hidden pointer-events-none z-10">
         {[...Array(30)].map((_, i) => (
@@ -98,15 +98,15 @@ export default function HomePage() {
         <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-black/40" />
       </div>
 
-      <div className="max-w-3xl w-full text-center z-20">
+      <div className="max-w-3xl w-full text-center z-20 px-2">
         <motion.div 
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1 }}
-            className="inline-flex items-center gap-3 bg-white/5 backdrop-blur-md border border-white/10 rounded-full px-6 py-2 mb-10 shadow-2xl"
+            className="inline-flex items-center gap-3 bg-white/5 backdrop-blur-md border border-white/10 rounded-full px-4 py-2 mb-6 shadow-2xl"
         >
           <span className="text-primary-500 animate-pulse">⚓</span>
-          <span className="text-gray-400 text-[10px] font-black uppercase tracking-[0.4em]">Trải nghiệm Triết học & Lịch sử</span>
+          <span className="text-gray-400 text-[9px] sm:text-[10px] font-black uppercase tracking-[0.3em] sm:tracking-[0.4em]">Trải nghiệm Triết học & Lịch sử</span>
         </motion.div>
 
         {/* Title */}
@@ -114,7 +114,7 @@ export default function HomePage() {
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 1.2, ease: "easeOut" }}
-            className="text-6xl md:text-8xl font-black mb-6 leading-none tracking-tighter"
+            className="text-5xl sm:text-6xl md:text-8xl font-black mb-4 md:mb-6 leading-none tracking-tighter"
         >
           <span className="text-white drop-shadow-2xl">CHIẾN DỊCH</span>
           <br />
@@ -127,7 +127,7 @@ export default function HomePage() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 0.8 }}
             transition={{ delay: 0.5, duration: 1 }}
-            className="text-gray-400 text-xl mb-12 leading-relaxed max-w-2xl mx-auto font-light"
+            className="text-gray-400 text-base sm:text-xl mb-8 md:mb-12 leading-relaxed max-w-2xl mx-auto font-light px-2"
         >
           Nhập vai chỉ huy, đưa ra những quyết định chiến lược xoay chuyển vận mệnh dân tộc thông qua lăng kính biện chứng duy vật.
         </motion.p>
@@ -137,23 +137,23 @@ export default function HomePage() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.8, duration: 1 }}
-            className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12"
+            className="grid grid-cols-3 gap-3 sm:gap-6 mb-8 md:mb-12"
         >
           {[
             { icon: '📜', label: '3 Chương', sub: 'Hành trình lịch sử' },
             { icon: '🎖️', label: '10 Cảnh', sub: 'Nút thắt chiến lược' },
             { icon: '⚖️', label: 'Triết học', sub: 'Tư duy Mác-Lênin' },
           ].map((s) => (
-            <div key={s.label} className="glass-card p-6 border-white/5 hover:border-primary-500/30 group">
-              <div className="text-3xl mb-3 group-hover:scale-125 transition-transform duration-500">{s.icon}</div>
-              <div className="text-white font-history text-xl font-bold mb-1 tracking-wide">{s.label}</div>
-              <div className="text-gray-500 text-[10px] font-black uppercase tracking-widest">{s.sub}</div>
+            <div key={s.label} className="glass-card p-3 sm:p-6 border-white/5 hover:border-primary-500/30 group">
+              <div className="text-2xl sm:text-3xl mb-1 sm:mb-3 group-hover:scale-125 transition-transform duration-500">{s.icon}</div>
+              <div className="text-white text-sm sm:text-xl font-bold mb-0.5 sm:mb-1 tracking-wide leading-tight">{s.label}</div>
+              <div className="text-gray-500 text-[8px] sm:text-[10px] font-black uppercase tracking-widest hidden sm:block">{s.sub}</div>
             </div>
           ))}
         </motion.div>
 
         {/* Input & Button */}
-        <div className="glass-card p-8 text-left">
+        <div className="glass-card p-5 sm:p-8 text-left">
           <label className="block text-gray-300 text-sm font-medium mb-2">
             Tên của bạn
           </label>
@@ -188,17 +188,17 @@ export default function HomePage() {
         </div>
 
         {/* Actions */}
-        <div className="flex flex-col sm:flex-row gap-4 mt-8">
+        <div className="flex flex-col sm:flex-row gap-3 mt-5 sm:mt-8">
           <button
             onClick={() => navigate('/')}
-            className="btn-primary flex-1 text-lg py-5"
+            className="btn-primary flex-1 text-base sm:text-lg py-4 sm:py-5"
           >
             🔄 Thực hiện lại Chiến dịch
           </button>
           <button
             onClick={() => setShowTimeline(true)}
-            className="flex-1 flex items-center justify-center px-8 py-5 rounded-xl border border-primary-500/30 text-primary-400 
-                       hover:border-primary-500 hover:text-white transition-all bg-primary-500/5 backdrop-blur-md"
+            className="flex-1 flex items-center justify-center px-4 sm:px-8 py-4 sm:py-5 rounded-xl border border-primary-500/30 text-primary-400 
+                       hover:border-primary-500 hover:text-white transition-all bg-primary-500/5 backdrop-blur-md text-base sm:text-lg"
           >
             📜 Dòng thời gian Lịch sử
           </button>
@@ -209,19 +209,21 @@ export default function HomePage() {
         </AnimatePresence>
       </div>
 
-      {/* Global Background Video (Hà Nội vi vu) - Cinematic Blurred Background */}
+      {/* Global Background Video - Optimized for Mobile */}
       <div className="fixed inset-0 z-0 overflow-hidden pointer-events-none">
         <video 
             key="bg-video"
             autoPlay 
             loop 
-            muted={isMuted}
+            muted 
             playsInline
             poster="/assets/images/background.jpg"
+            src="/assets/images/video/hanoi_vivu.mp4"
             className="w-full h-full object-cover scale-105"
             style={{ filter: 'blur(8px) brightness(0.5)' }}
+            onCanPlayThrough={(e) => e.target.play()}
         >
-            <source src="/assets/images/video/hanoi_vivu.mp4" type="video/mp4" />
+            Trình duyệt của bạn không hỗ trợ video nền.
         </video>
         {/* Cinematic overlays for depth and legibility */}
         <div className="absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-black/60 to-transparent" />

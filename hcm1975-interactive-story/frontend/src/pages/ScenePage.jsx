@@ -84,10 +84,13 @@ export default function ScenePage() {
         state: { scene: nextScene, score: newScore, playerName }
       });
     } else {
-      setScene(nextScene);
       setSelectedChoiceId(null);
       setFeedback(null);
-      navigate(`/scene/${nextScene.sceneId}`, { replace: true });
+      // Pass the nextScene object in state to allow immediate render without loading flicker
+      navigate(`/scene/${nextScene.sceneId}`, { 
+        replace: true,
+        state: { scene: nextScene, score: newScore, playerName }
+      });
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
   };
@@ -114,7 +117,7 @@ export default function ScenePage() {
   if (!scene) return null;
 
   return (
-    <div className="relative min-h-screen w-full overflow-hidden flex flex-col pt-4">
+    <div className="relative min-h-screen w-full overflow-x-hidden flex flex-col pt-2 sm:pt-4">
       {/* Background Layer: Full Screen Image with Cinematic Blur */}
       {scene.imageUrl && (
         <div className="fixed inset-0 z-0">
@@ -132,23 +135,23 @@ export default function ScenePage() {
       )}
 
       {/* Main Content: Cinematic Layout */}
-      <div className="relative z-10 flex flex-col h-screen max-w-6xl mx-auto w-full px-6">
+      <div className="relative z-10 flex flex-col h-screen max-w-6xl mx-auto w-full px-3 sm:px-6">
         
         {/* Header Overlay */}
-        <div className="flex items-center justify-between py-6">
+        <div className="flex items-center justify-between py-3 sm:py-6">
           <button
             onClick={() => navigate('/')}
-            className="w-12 h-12 flex items-center justify-center rounded-full bg-black/40 border border-white/10 text-white/60 hover:text-white hover:bg-black/60 transition-all backdrop-blur-md"
+            className="w-10 h-10 sm:w-12 sm:h-12 flex items-center justify-center rounded-full bg-black/40 border border-white/10 text-white/60 hover:text-white hover:bg-black/60 transition-all backdrop-blur-md text-sm sm:text-base"
             title="Thoát"
           >
             ✕
           </button>
           
           <div className="flex flex-col items-center gap-2">
-            <div className="px-4 py-1 rounded-full bg-primary-600/20 border border-primary-500/30 backdrop-blur-md">
-               <span className="text-[10px] font-black uppercase tracking-[0.3em] text-primary-400">Tiến độ chiến dịch</span>
+            <div className="px-3 py-1 rounded-full bg-primary-600/20 border border-primary-500/30 backdrop-blur-md">
+               <span className="text-[8px] sm:text-[10px] font-black uppercase tracking-[0.2em] sm:tracking-[0.3em] text-primary-400">Tiến độ chiến dịch</span>
             </div>
-            <div className="w-48 h-1 bg-white/10 rounded-full overflow-hidden">
+            <div className="w-32 sm:w-48 h-1 bg-white/10 rounded-full overflow-hidden">
                 <motion.div 
                     initial={{ width: 0 }}
                     animate={{ width: `${Math.min((scene.sceneId / 10) * 100, 100)}%` }}
@@ -165,7 +168,7 @@ export default function ScenePage() {
                 AudioController.setMute(newMute);
                 setIsMuted(newMute);
               }}
-              className="w-12 h-12 flex items-center justify-center rounded-full bg-black/40 border border-white/10 text-white/60 hover:text-white hover:bg-black/60 transition-all backdrop-blur-md"
+              className="w-10 h-10 sm:w-12 sm:h-12 flex items-center justify-center rounded-full bg-black/40 border border-white/10 text-white/60 hover:text-white hover:bg-black/60 transition-all backdrop-blur-md text-sm sm:text-base"
             >
               {isMuted ? "🔇" : "🔊"}
             </button>
@@ -188,7 +191,7 @@ export default function ScenePage() {
         <div className="flex-1" />
 
         {/* Visual Novel Style Dialogue Box */}
-        <div className="pb-10 space-y-6">
+        <div className="pb-4 sm:pb-10 space-y-4 sm:space-y-6">
           <motion.div 
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
@@ -197,7 +200,7 @@ export default function ScenePage() {
           >
             <div className="flex flex-col md:flex-row h-full">
               {/* Scene Media focus area */}
-              <div className="w-full md:w-1/3 h-48 md:h-auto overflow-hidden relative border-b md:border-b-0 md:border-r border-white/10">
+              <div className="w-full md:w-1/3 h-36 sm:h-48 md:h-auto overflow-hidden relative border-b md:border-b-0 md:border-r border-white/10">
                 <img 
                     src={scene.imageUrl} 
                     alt={scene.title} 
@@ -210,24 +213,24 @@ export default function ScenePage() {
               </div>
 
               {/* Text & choices area */}
-              <div className="flex-1 p-8 flex flex-col justify-center">
-                <h2 className="text-3xl font-bold text-white mb-4 tracking-normal leading-tight">
+              <div className="flex-1 p-4 sm:p-8 flex flex-col justify-center">
+                <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-white mb-2 sm:mb-4 tracking-normal leading-tight">
                     {scene.title}
                 </h2>
-                <div className="text-gray-300 text-lg leading-relaxed mb-8">
+                <div className="text-gray-300 text-sm sm:text-base md:text-lg leading-relaxed mb-4 sm:mb-8">
                     {scene.content}
                 </div>
 
                 {scene.philosophyNote && (
-                  <div className="bg-primary-900/20 border-l-2 border-primary-500/50 p-4 rounded-r-xl mb-8">
-                    <p className="text-[10px] font-black uppercase tracking-[0.2em] text-primary-400 mb-1">Tư duy chiến lược</p>
-                    <p className="text-sm italic text-gray-400">{scene.philosophyNote}</p>
+                  <div className="bg-primary-900/20 border-l-2 border-primary-500/50 p-2 sm:p-4 rounded-r-xl mb-4 sm:mb-8">
+                    <p className="text-[8px] sm:text-[10px] font-black uppercase tracking-[0.2em] text-primary-400 mb-1">Tư duy chiến lược</p>
+                    <p className="text-xs sm:text-sm italic text-gray-400">{scene.philosophyNote}</p>
                   </div>
                 )}
                 
                 {/* Choices */}
                 {scene.choices && scene.choices.length > 0 && (
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div className="grid grid-cols-1 gap-3 sm:gap-4">
                     {scene.choices.map((choice, idx) => (
                       <ChoiceButton
                         key={choice.id}
