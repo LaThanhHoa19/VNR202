@@ -49,6 +49,18 @@ class AudioController {
         }
     }
 
+    stopBgm() {
+        if (this.bgm) {
+            this.bgm.fade(this.bgm.volume(), 0, 1000);
+            const oldBgm = this.bgm;
+            setTimeout(() => {
+                oldBgm.stop();
+                oldBgm.unload();
+            }, 1100);
+            this.bgm = null;
+        }
+    }
+
     getBgmFileForScene(sceneId) {
         // User requested hanoi_vivu.mp3 for all scenes during gameplay
         return 'hanoi_vivu.mp3';

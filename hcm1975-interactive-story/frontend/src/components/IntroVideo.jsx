@@ -1,5 +1,6 @@
 import React, { useRef, useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import AudioController from '../services/AudioController';
 
 const subtitles = [
     { time: 0, text: "Ngày 27/01/1973: Hiệp định Paris chính thức được ký kết." },
@@ -14,6 +15,11 @@ const IntroVideo = ({ onComplete }) => {
     const [isPlaying, setIsPlaying] = useState(false);
     const [currentSub, setCurrentSub] = useState("");
     const [isMuted, setIsMuted] = useState(false);
+
+    useEffect(() => {
+        // Stop background music when intro starts
+        AudioController.stopBgm();
+    }, []);
 
     const handleStart = () => {
         if (videoRef.current) {
